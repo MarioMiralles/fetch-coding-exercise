@@ -3,12 +3,17 @@ package com.example.fetchrewardscodingexercise
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,20 +41,28 @@ fun FetchRewardsApp() {
         TopAppBar(
             title = {
                 Column {
-                    Text("Fetch Rewards Coding Exercise")
+                    Text(
+                        "Fetch Rewards Coding Exercise",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
                     Text(
                         "Mario Miralles",
                         style = MaterialTheme.typography.bodyMedium,
+                        color = Color(0xFFfaa719),
                         fontWeight = FontWeight.Normal
                     )
                 }
             },
             colors = TopAppBarDefaults.smallTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                containerColor = Color(0xFF300c38),
+                titleContentColor = Color.White,
             )
         )
+        Spacer(modifier = Modifier.height(16.dp))
         ItemList()
+        Spacer(modifier = Modifier.weight(1f)) // Push footer to the bottom
+        FooterImage()
     }
 }
 
@@ -74,7 +87,10 @@ fun ExpandableListGroup(listId: Int, groupItems: List<Item>) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 9.dp),
-        onClick = { expanded = !expanded }
+        onClick = { expanded = !expanded },
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFEDE7F6)
+        )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
@@ -84,11 +100,13 @@ fun ExpandableListGroup(listId: Int, groupItems: List<Item>) {
                 Text(
                     text = "List ID: $listId",
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF300c38)
                 )
                 Text(
                     text = if (expanded) "▼" else "▶",
-                    style = MaterialTheme.typography.headlineSmall
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = Color(0xFF300c38)
                 )
             }
             if (expanded) {
@@ -107,11 +125,40 @@ fun ItemCard(item: Item) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFFEFD5)
+        )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Name: ${item.name}", style = MaterialTheme.typography.bodyLarge)
-            Text(text = "ID: ${item.id}", style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = "Name: ${item.name}",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color(0xFF300c38)
+            )
+            Text(
+                text = "ID: ${item.id}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color(0xFFfaa719)
+            )
         }
+    }
+}
+
+@Composable
+fun FooterImage() {
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.fetch_rewards_logo),
+            contentDescription = "Fetch Rewards Dog",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(192.dp)
+                .padding(16.dp),
+            contentScale = ContentScale.Crop
+        )
     }
 }
