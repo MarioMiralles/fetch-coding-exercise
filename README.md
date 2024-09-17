@@ -1,5 +1,6 @@
-
-![Logo](app/src/main/res/drawable/fetch_logo_readme.png)
+<div align="center">
+  <img src="app/src/main/res/drawable/fetch_logo_readme.png" alt="Logo" style="width: 21rem;"/>
+</div>
 
 
 # Coding Exercise - Software Engineering - Mobile
@@ -37,9 +38,9 @@ This project demonstrates a mobile app built with Kotlin, Android Studio, and Je
 3. Build and run the app on an emulator or physical device.
 ## Screenshots
 
-<div style="display: flex;gap: 1rem;height: 21rem;">
-<img src="./app/src/main/res/drawable/fetch_screenshot_1.png" alt="Preview screenshot #1 of the App" />
-<img src="./app/src/main/res/drawable/fetch_screenshot_2.png" alt="Preview screenshot #2 of the App" />
+<div style="display: flex; gap: 3rem;">
+  <img src="./app/src/main/res/drawable/fetch_screenshot_1.png" alt="Preview screenshot #1 of the App" style="width: auto;height: 21rem;"/>
+  <img src="./app/src/main/res/drawable/fetch_screenshot_2.png" alt="Preview screenshot #2 of the App" style="width: auto;height: 21rem;"/>
 </div>
 
 
