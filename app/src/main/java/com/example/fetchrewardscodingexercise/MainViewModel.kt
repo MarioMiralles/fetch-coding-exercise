@@ -1,4 +1,4 @@
-package com.example.fetchrewardscodingexercise // This should already match your package name
+package com.example.fetchrewardscodingexercise
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
