@@ -37,7 +37,7 @@ fun FetchRewardsApp() {
             title = {
                 Column {
                     Text("Fetch Rewards Coding Exercise")
-                    Text (
+                    Text(
                         "Mario Miralles",
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Normal
@@ -60,15 +60,42 @@ fun ItemList(viewModel: MainViewModel = viewModel()) {
     LazyColumn {
         items.groupBy { it.listId }.forEach { (listId, groupItems) ->
             item {
+                ExpandableListGroup(listId, groupItems)
+            }
+        }
+    }
+}
+
+@Composable
+fun ExpandableListGroup(listId: Int, groupItems: List<Item>) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 9.dp),
+        onClick = { expanded = !expanded }
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
                     text = "List ID: $listId",
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp)
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = if (expanded) "▼" else "▶",
+                    style = MaterialTheme.typography.headlineSmall
                 )
             }
-            items(groupItems) { item ->
-                ItemCard(item)
+            if (expanded) {
+                Spacer(modifier = Modifier.height(8.dp))
+                groupItems.forEach { item ->
+                    ItemCard(item)
+                }
             }
         }
     }
