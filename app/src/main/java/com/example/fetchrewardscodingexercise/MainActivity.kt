@@ -33,6 +33,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FetchRewardsApp() {
     Column {
@@ -73,7 +74,8 @@ fun ItemCard(item: Item) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = "Name: ${item.name}", style = MaterialTheme.typography.bodyLarge)
